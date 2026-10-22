@@ -1,0 +1,5 @@
+# Mantém links antigos do WordPress funcionando
+/wp-content/uploads/*  /uploads/:splat  301
+/home  /  301
+/index.php  /  301
+/feed  /  301

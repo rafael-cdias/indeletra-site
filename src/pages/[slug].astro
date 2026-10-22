@@ -1,0 +1,93 @@
+---
+import Base from '../layouts/Base.astro';
+import Paragrafos from '../components/Paragrafos.astro';
+import site from '../data/site.json';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const produtos = await getCollection('produtos');
+  return produtos.map((p) => ({ params: { slug: p.id }, props: { produto: p } }));
+}
+
+const { produto } = Astro.props;
+const { data } = produto;
+const { Content } = await render(produto);
+const ancora = (n: string) => n.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const wa = (linha: string) => `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(`Olá Indeletra, gostaria de um orçamento de ${data.title} – ${linha}.`)}`;
+---
+<Base title={data.title} description={data.resumo || undefined} image={data.imagem}>
+  <section class="cab-pagina">
+    <div class="container grid">
+      <div>
+        <div class="migalha"><a href="/">Início</a> / <a href="/#produtos">Produtos</a> / {data.menu || data.title}</div>
+        <h1>{data.title}</h1>
+        <div class="intro lead"><Content /></div>
+        {data.linhas.length > 1 && (
+          <ul class="indice">{data.linhas.map((l) => <li><a href={`#${ancora(l.nome)}`}>{l.nome}</a></li>)}</ul>
+        )}
+      </div>
+      <div class="img"><img src={data.imagem} alt={data.title} width="320" height="320" /></div>
+    </div>
+  </section>
+
+  <section class="secao" style="padding-top:20px">
+    <div class="container">
+      {data.linhas.map((l) => (
+        <article class="linha" id={ancora(l.nome)}>
+          <div class="linha-topo">
+            <h2>{l.nome}</h2>
+            {l.logo && <img src={l.logo} alt={`Logo ${l.nome}`} loading="lazy" />}
+          </div>
+          <div class={l.descricao && l.especificacoes.length ? 'linha-grid' : ''}>
+            {l.descricao && (
+              <div>
+                <Paragrafos texto={l.descricao} />
+                {l.imagem && <img src={l.imagem} alt={`Esquema – ${l.nome}`} loading="lazy" style="border-radius:12px;margin-top:12px" />}
+                <a class="btn btn-primario" href={wa(l.nome)} target="_blank" rel="noopener" style="margin-top:8px">Pedir orçamento</a>
+              </div>
+            )}
+            {l.especificacoes.length > 0 && (
+              <div>
+                <div class="specs-titulo">Especificações técnicas</div>
+                <ul class="specs">{l.especificacoes.map((e) => <li>{e}</li>)}</ul>
+                {!l.descricao && <a class="btn btn-primario" href={wa(l.nome)} target="_blank" rel="noopener" style="margin-top:20px">Pedir orçamento</a>}
+              </div>
+            )}
+          </div>
+          {l.fotos.length > 0 && (
+            <div class="galeria">
+              {l.fotos.map((f, i) => (
+                <button type="button" class="galeria-item" data-lightbox-src={f} aria-label={`Ampliar foto ${i + 1} de ${l.nome}`}>
+                  <img src={f} alt={`Foto – ${l.nome}`} loading="lazy" width="300" height="300" />
+                </button>
+              ))}
+            </div>
+          )}
+          {l.manuais.length > 0 && (
+            <div class="tabela-wrap">
+              <table class="manuais">
+                <thead><tr><th>Potência</th><th>Tensão de entrada</th><th>Tensão de saída</th><th>Manual</th></tr></thead>
+                <tbody>
+                  {l.manuais.map((m) => (
+                    <tr>
+                      <td>{m.potencia}</td><td>{m.entrada}</td><td>{m.saida}</td>
+                      <td>{m.arquivo ? <a href={m.arquivo} target="_blank" rel="noopener">Baixar PDF ↓</a> : <span class="sob">Sob consulta</span>}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </article>
+      ))}
+
+      <div class="cta" style="margin-top:48px">
+        <div>
+          <h2>Precisa de uma especificação diferente?</h2>
+          <p>Desenvolvemos projetos sob medida. Fale com um especialista da Indeletra.</p>
+        </div>
+        <a class="btn btn-primario" href="/contato/">Falar com especialista</a>
+      </div>
+    </div>
+  </section>
+</Base>

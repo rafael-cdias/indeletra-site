@@ -1,0 +1,173 @@
+# Configuração do Pages CMS (https://pagescms.org)
+# Define o que pode ser editado pelo painel, sem mexer em código.
+
+media:
+  - name: imagens
+    label: Imagens
+    input: public/uploads
+    output: /uploads
+    extensions: [png, jpg, jpeg, webp, svg, gif]
+  - name: pdfs
+    label: PDFs (manuais e catálogos)
+    input: public/pdf
+    output: /pdf
+    extensions: [pdf]
+
+content:
+  - name: produtos
+    label: Produtos
+    type: collection
+    path: src/content/produtos
+    filename: "{fields.slug}.md"
+    view:
+      fields: [title, ordem]
+      primary: title
+      sort: [ordem]
+      default:
+        sort: ordem
+        order: asc
+    fields:
+      - name: title
+        label: Nome da página
+        type: string
+        required: true
+      - name: menu
+        label: Nome curto no menu (opcional)
+        type: string
+      - name: ordem
+        label: Ordem de exibição
+        type: number
+        default: 99
+      - name: imagem
+        label: Imagem principal
+        type: image
+        options:
+          media: imagens
+      - name: resumo
+        label: Resumo (aparece no card da página inicial)
+        type: text
+      - name: body
+        label: Texto de introdução
+        type: rich-text
+      - name: linhas
+        label: Linhas de produto
+        type: object
+        list: true
+        fields:
+          - name: nome
+            label: Nome da linha
+            type: string
+            required: true
+          - name: logo
+            label: Logo da linha (opcional)
+            type: image
+            options:
+              media: imagens
+          - name: imagem
+            label: Imagem extra / esquema (opcional)
+            type: image
+            options:
+              media: imagens
+          - name: descricao
+            label: Descrição (deixe uma linha em branco entre parágrafos)
+            type: text
+          - name: especificacoes
+            label: Especificações técnicas
+            type: string
+            list: true
+          - name: fotos
+            label: Galeria de fotos do produto
+            type: image
+            list: true
+            options:
+              media: imagens
+          - name: manuais
+            label: Tabela de manuais
+            type: object
+            list: true
+            fields:
+              - name: potencia
+                label: Potência
+                type: string
+              - name: entrada
+                label: Tensão de entrada
+                type: string
+              - name: saida
+                label: Tensão de saída
+                type: string
+              - name: arquivo
+                label: Manual em PDF (vazio = "Sob consulta")
+                type: file
+                options:
+                  media: pdfs
+
+  - name: home
+    label: Página inicial
+    type: file
+    path: src/data/home.json
+    format: json
+    fields:
+      - { name: hero_titulo, label: Título principal, type: string }
+      - { name: hero_texto, label: Texto de apresentação, type: text }
+      - { name: hero_botao, label: Texto do botão, type: string }
+      - { name: hero_imagem, label: Imagem de destaque, type: image, options: { media: imagens } }
+      - name: destaques
+        label: Números em destaque
+        type: object
+        list: true
+        fields:
+          - { name: numero, label: Número / destaque, type: string }
+          - { name: texto, label: Legenda, type: string }
+      - { name: missao, label: Frase de missão (faixa escura), type: text }
+      - { name: produtos_titulo, label: Título da seção de produtos, type: string }
+      - { name: projetos_titulo, label: Projetos especiais – título, type: string }
+      - { name: projetos_texto, label: Projetos especiais – texto, type: text }
+      - { name: projetos_imagem, label: Projetos especiais – imagem, type: image, options: { media: imagens } }
+      - { name: porque_titulo, label: Diferenciais – título, type: string }
+      - name: porque_itens
+        label: Diferenciais
+        type: object
+        list: true
+        fields:
+          - { name: titulo, label: Título, type: string }
+          - { name: texto, label: Texto, type: text }
+      - { name: revenda_titulo, label: Revenda – título, type: string }
+      - { name: revenda_texto, label: Revenda – texto, type: text }
+      - { name: revenda_botao, label: Revenda – botão, type: string }
+      - { name: revenda_imagem, label: Revenda – imagem, type: image, options: { media: imagens } }
+      - { name: catalogos_titulo, label: Catálogos – título, type: string }
+      - { name: catalogos_texto, label: Catálogos – texto, type: text }
+      - name: catalogos
+        label: Catálogos
+        type: object
+        list: true
+        fields:
+          - { name: titulo, label: Título, type: string }
+          - { name: imagem, label: Capa, type: image, options: { media: imagens } }
+          - { name: arquivo, label: PDF, type: file, options: { media: pdfs } }
+
+  - name: site
+    label: Dados da empresa e contato
+    type: file
+    path: src/data/site.json
+    format: json
+    fields:
+      - { name: nome, label: Nome da empresa, type: string }
+      - { name: razao_social, label: Razão social (rodapé), type: string }
+      - { name: slogan, label: Slogan, type: string }
+      - { name: descricao_seo, label: Descrição para Google (até ~160 caracteres), type: text }
+      - { name: logo, label: Logo, type: image, options: { media: imagens } }
+      - { name: icone, label: Ícone da aba do navegador, type: image, options: { media: imagens } }
+      - { name: endereco, label: Endereço, type: string }
+      - { name: cidade, label: Cidade / CEP, type: string }
+      - { name: horario, label: Horário de funcionamento, type: string }
+      - { name: telefone, label: Telefone (como aparece no site), type: string }
+      - { name: telefone_link, label: "Telefone para discagem (ex.: +556135915547)", type: string }
+      - { name: whatsapp, label: "WhatsApp com DDI e DDD, só números (ex.: 5561981193632)", type: string }
+      - { name: whatsapp_mensagem, label: Mensagem inicial do WhatsApp, type: string }
+      - { name: email_suporte, label: E-mail de apoio técnico, type: string }
+      - { name: email_vendas, label: E-mail de orçamentos, type: string }
+      - { name: email_contato, label: E-mail geral, type: string }
+      - { name: instagram, label: Instagram (URL), type: string }
+      - { name: facebook, label: Facebook (URL), type: string }
+      - { name: youtube, label: YouTube (URL), type: string }

@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+const wa = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(site.whatsapp_mensagem)}`;
+const mapa = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${site.endereco}, ${site.cidade}`)}`;
+const mapaEmbed = `https://maps.google.com/maps?q=${encodeURIComponent(`${site.endereco}, ${site.cidade}`)}&output=embed`;
+---
+<Base title="Contato" description="Fale com a Indeletra: telefone, WhatsApp, e-mails e endereço em Sobradinho, Brasília – DF.">
+  <section class="cab-pagina">
+    <div class="container">
+      <div class="migalha"><a href="/">Início</a> / Contato</div>
+      <h1>Contato</h1>
+      <p class="lead">Atendimento personalizado para todo o Brasil. Escolha o canal mais prático para você.</p>
+    </div>
+  </section>
+
+  <section class="secao">
+    <div class="container duas-colunas" style="align-items:start">
+      <div class="contato-grid">
+        <div class="bloco"><h3>WhatsApp</h3><p><a href={wa} target="_blank" rel="noopener">Iniciar conversa →</a></p></div>
+        <div class="bloco"><h3>Telefone</h3><p><a href={`tel:${site.telefone_link}`}>{site.telefone}</a></p></div>
+        <div class="bloco"><h3>Orçamentos</h3><p><a href={`mailto:${site.email_vendas}`}>{site.email_vendas}</a></p></div>
+        <div class="bloco"><h3>Apoio técnico</h3><p><a href={`mailto:${site.email_suporte}`}>{site.email_suporte}</a></p></div>
+        <div class="bloco"><h3>Outros assuntos</h3><p><a href={`mailto:${site.email_contato}`}>{site.email_contato}</a></p></div>
+        <div class="bloco"><h3>Horário</h3><p>{site.horario}</p></div>
+        <div class="bloco" style="grid-column:1/-1"><h3>Endereço</h3><p>{site.endereco}<br />{site.cidade}<br /><a href={mapa} target="_blank" rel="noopener">Abrir no mapa →</a></p></div>
+      </div>
+      <iframe title="Mapa – Indeletra" src={mapaEmbed} loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="width:100%;min-height:440px;border:0;border-radius:20px;background:var(--fundo-alt)"></iframe>
+    </div>
+  </section>
+</Base>

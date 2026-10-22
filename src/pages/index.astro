@@ -1,0 +1,112 @@
+---
+import Base from '../layouts/Base.astro';
+import Paragrafos from '../components/Paragrafos.astro';
+import home from '../data/home.json';
+import site from '../data/site.json';
+import { getCollection } from 'astro:content';
+
+const produtos = (await getCollection('produtos')).sort((a, b) => a.data.ordem - b.data.ordem);
+const [antes, ...resto] = home.hero_titulo.split(' ');
+const marca = resto.join(' ');
+---
+<Base>
+  <section class="hero">
+    <div class="container grid">
+      <div>
+        <span class="rotulo">Desde 1985 · Brasília – DF</span>
+        <h1>{antes} <span>{marca}</span></h1>
+        <Paragrafos texto={home.hero_texto} class="lead" />
+        <div class="acoes">
+          <a class="btn btn-primario" href="/contato/">{home.hero_botao}</a>
+          <a class="btn btn-contorno" href="#produtos">Ver produtos</a>
+        </div>
+        <div class="destaques">
+          {home.destaques.map((d) => <div><strong>{d.numero}</strong><small>{d.texto}</small></div>)}
+        </div>
+      </div>
+      <div class="hero-img"><img src={home.hero_imagem} alt="Engenharia Indeletra" width="560" height="560" /></div>
+    </div>
+  </section>
+
+  <section class="secao escura missao">
+    <div class="container"><p>{home.missao}</p></div>
+  </section>
+
+  <section class="secao" id="produtos">
+    <div class="container">
+      <span class="rotulo">Linha completa</span>
+      <h2>{home.produtos_titulo}</h2>
+      <div class="grid-produtos">
+        {produtos.map((p) => (
+          <a class="card" href={`/${p.id}/`}>
+            <div class="img"><img src={p.data.imagem} alt={p.data.title} loading="lazy" width="320" height="240" /></div>
+            <div class="corpo">
+              <h3>{p.data.menu || p.data.title}</h3>
+              <p>{p.data.resumo}</p>
+              <div class="mais">Ver especificações →</div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="secao alt">
+    <div class="container duas-colunas">
+      <img src={home.projetos_imagem} alt={home.projetos_titulo} loading="lazy" width="560" height="560" />
+      <div>
+        <span class="rotulo">Sob medida</span>
+        <h2>{home.projetos_titulo}</h2>
+        <Paragrafos texto={home.projetos_texto} />
+        <a class="btn btn-primario" href="/contato/">Fale sobre seu projeto</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao">
+    <div class="container">
+      <span class="rotulo">Diferenciais</span>
+      <h2>{home.porque_titulo}</h2>
+      <div class="grid-vantagens">
+        {home.porque_itens.map((v, i) => (
+          <div class="vantagem">
+            <span class="num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{v.titulo}</h3>
+            <p>{v.texto}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="secao alt" id="revenda">
+    <div class="container duas-colunas">
+      <div>
+        <span class="rotulo">Parceria</span>
+        <h2>{home.revenda_titulo}</h2>
+        <Paragrafos texto={home.revenda_texto} />
+        <a class="btn btn-primario" href={`mailto:${site.email_vendas}?subject=${encodeURIComponent('Quero ser revendedor Indeletra')}`}>{home.revenda_botao}</a>
+      </div>
+      <img src={home.revenda_imagem} alt="Atendimento Indeletra" loading="lazy" width="560" height="560" />
+    </div>
+  </section>
+
+  <section class="secao" id="catalogos">
+    <div class="container duas-colunas">
+      <div>
+        <span class="rotulo">Downloads</span>
+        <h2>{home.catalogos_titulo}</h2>
+        <Paragrafos texto={home.catalogos_texto} />
+        <p class="lead" style="font-size:.95rem">Clique nas imagens para abrir o PDF.</p>
+      </div>
+      <div class="catalogos">
+        {home.catalogos.map((c) => (
+          <a href={c.arquivo} target="_blank" rel="noopener">
+            <img src={c.imagem} alt={c.titulo} loading="lazy" width="260" height="260" />
+            {c.titulo}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

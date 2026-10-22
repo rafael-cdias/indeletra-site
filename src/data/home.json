@@ -1,0 +1,35 @@
+{
+  "hero_titulo": "Bem-vindo à Indeletra",
+  "hero_texto": "Fundada em 26 de novembro de 1985, a INDELETRA produz e comercializa transformadores, fontes de alimentação linear, conversores de energia, estabilizadores, protetores de linha, entre outros. Nossa estrutura dispõe de modernos equipamentos e corpo técnico qualificado, com uma equipe sempre dedicada ao desenvolvimento e à inovação de projetos para melhor atendê-los.\n\nA INDELETRA está sempre inovando, aperfeiçoando seus produtos seguindo a evolução. Localizada na capital federal, em Sobradinho, a 22 km do Plano Piloto. Possuímos atendimento personalizado para todo o Brasil.",
+  "hero_botao": "Fale com um especialista",
+  "hero_imagem": "/uploads/2024/10/engenheiro_indeletra-2.webp",
+  "destaques": [
+    { "numero": "1985", "texto": "Fabricando em Brasília" },
+    { "numero": "9", "texto": "Linhas de produtos" },
+    { "numero": "Brasil", "texto": "Atendimento em todo o país" }
+  ],
+  "missao": "Nosso foco é levar energia e segurança de forma adequada e inovadora às necessidades específicas de cada cliente, superando as expectativas do mercado.",
+  "produtos_titulo": "Produtos Indeletra",
+  "projetos_titulo": "Projetos Especiais",
+  "projetos_texto": "O desenvolvimento de projetos especiais na área elétrica foca em inovação e segurança. Cada fase é planejada para integrar tecnologias avançadas e criar soluções eficientes e sob medida. A segurança é garantida por normas rigorosas e sistemas de controle que protegem pessoas e equipamentos, assegurando uma operação estável. Esse equilíbrio entre inovação e segurança permite instalações confiáveis e sustentáveis, alinhadas às melhores práticas da engenharia elétrica.",
+  "projetos_imagem": "/uploads/2024/10/projetos_especiais.webp",
+  "porque_titulo": "Por que comprar os produtos INDELETRA",
+  "porque_itens": [
+    { "titulo": "Segurança", "texto": "Os produtos da INDELETRA são fabricados com materiais de alta qualidade e seguem rigorosos padrões de segurança, reduzindo riscos de curto-circuito, sobrecargas e outros incidentes elétricos. Isso traz mais tranquilidade ao consumidor, que conta com uma linha confiável para uso doméstico e comercial." },
+    { "titulo": "Durabilidade", "texto": "Feitos com componentes duráveis, os produtos da INDELETRA foram projetados para resistir ao uso contínuo e às condições exigentes, evitando substituições frequentes e custos com manutenção. Essa durabilidade é ideal para quem deseja produtos de longo prazo e com desempenho consistente." },
+    { "titulo": "Eficiência energética", "texto": "A INDELETRA prioriza a eficiência em seus produtos, utilizando materiais que otimizam o consumo de energia. Essa característica contribui para a redução de custos na conta de energia e também é uma vantagem para quem busca produtos que respeitem o meio ambiente." },
+    { "titulo": "Design funcional", "texto": "Além de segurança e durabilidade, os produtos da INDELETRA possuem um design moderno e funcional que se integra a diferentes tipos de ambientes. Eles são desenvolvidos com atenção à estética e ergonomia, o que facilita a instalação e o uso diário." },
+    { "titulo": "Normas e certificações", "texto": "Produtos INDELETRA são construídos com materiais adequados e possuem certificações e normas de segurança. Isso garante que o produto foi testado e aprovado em quesitos como resistência e segurança, oferecendo tranquilidade e confiabilidade para o consumidor final." },
+    { "titulo": "Inovação", "texto": "A INDELETRA investe em pesquisa e desenvolvimento para criar produtos que acompanham as inovações tecnológicas do setor elétrico. Com produtos atualizados, o cliente tem acesso a funcionalidades e soluções avançadas que otimizam o desempenho elétrico e trazem mais comodidade no uso diário." }
+  ],
+  "revenda_titulo": "Seja uma Revenda INDELETRA",
+  "revenda_texto": "Os equipamentos INDELETRA são reconhecidos pelo alto desempenho e excelente custo-benefício. Além dos produtos de linha, temos capacidade de desenvolver projetos customizados, oferecendo assessoria e suporte especializado!",
+  "revenda_botao": "Quero ser um revendedor",
+  "revenda_imagem": "/uploads/2024/10/atendente-1.webp",
+  "catalogos_titulo": "Catálogos",
+  "catalogos_texto": "Somos uma empresa especializada na fabricação de transformadores de tensão, fontes de alimentação, protetores elétricos, filtros de linha e outros. Conheça toda a linha de produtos acessando nossos catálogos.",
+  "catalogos": [
+    { "titulo": "Catálogo de Produtos", "imagem": "/uploads/2024/10/catalogo01-1024x1024.webp", "arquivo": "/pdf/Catalogo_Produtos_Indeletra_web01.25.pdf" },
+    { "titulo": "Catálogo Publicitário", "imagem": "/uploads/2024/10/catalogo02-1024x1024.webp", "arquivo": "/pdf/Catalogo_Publicidade_Produtos_INDELETRA_web04.2025.pdf" }
+  ]
+}

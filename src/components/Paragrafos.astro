@@ -1,0 +1,7 @@
+---
+// Converte texto com linhas em branco em parágrafos.
+interface Props { texto?: string; class?: string; }
+const { texto = '', class: cls } = Astro.props;
+const paras = texto.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
+---
+<div class:list={['prosa', cls]}>{paras.map((p) => <p>{p}</p>)}</div>
