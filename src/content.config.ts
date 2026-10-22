@@ -11,6 +11,7 @@ const manual = z.object({
 const linha = z.object({
   nome: z.string(),
   logo: z.string().optional().nullable(),
+  imagem: z.string().optional().nullable(),
   descricao: z.string().optional().default(''),
   especificacoes: z.array(z.string()).optional().default([]),
   manuais: z.array(manual).optional().default([]),
