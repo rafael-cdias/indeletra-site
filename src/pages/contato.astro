@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 const wa = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(site.whatsapp_mensagem)}`;
 const mapa = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${site.endereco}, ${site.cidade}`)}`;
-const mapaEmbed = `https://maps.google.com/maps?q=${encodeURIComponent(`${site.endereco}, ${site.cidade}`)}&output=embed`;
+const mapaEmbed = site.mapa_embed || `https://maps.google.com/maps?q=${encodeURIComponent(`${site.endereco}, ${site.cidade}`)}&output=embed`;
 ---
 <Base title="Contato" description="Fale com a Indeletra: telefone, WhatsApp, e-mails e endereço em Sobradinho, Brasília – DF.">
   <section class="cab-pagina">

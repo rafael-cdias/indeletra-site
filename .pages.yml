@@ -171,3 +171,6 @@ content:
       - { name: instagram, label: Instagram (URL), type: string }
       - { name: facebook, label: Facebook (URL), type: string }
       - { name: youtube, label: YouTube (URL), type: string }
+      - name: mapa_embed
+        label: "Link do mapa (opcional — veja instruções abaixo de como gerar)"
+        type: text
